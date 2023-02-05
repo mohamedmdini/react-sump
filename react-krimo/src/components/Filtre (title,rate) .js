@@ -1,44 +1,72 @@
-import { useState } from "react";
+import { Component} from "react";
+import "./App.css";
+import MovieList from "./movielist";
 
-var data = require("./mohamed.json");
 
 
-export default function App (){
 
-const[value, setvalue] = useState('');
-const onChange = (event) => {
-    setvalue(event.target.value);
+
+class App extends Component {
+    constructor(){
+        super(); 
+    this.state= {
+        movies: [],
+        showMovies: false,
+        searchInput: "", 
+    }
 }
-const onSearch =(SearchTerm) => {
-    setvalue(SearchTerm);
-    // our api to fetch the search result 
-    console.log('Search', SearchTerm);
+
+componentDidMount (){
+    fetch (
+        "https://my-json-server-typicode.com/horizon-code-academy/fake-movies-api/movies"
+    )
+    .then((Response)=> Response.json())
+    .then((apiMovies)=>
+    this.setState(() => {
+        return { movies: apiMovies, showMovies : true};
+    }
+    ));
 }
-    return(
-        <div className="App">
-            <h1>Search </h1>
-            <div className="Search-container">
-                <div className="search-inner">
-<input type="text" value={value} onChange = {onChange} />
-<button onClick={()=>onSearch(value)}> Search</button>
-<div className="dropdown">
-    {data.filter(=>{
-const SearchTerm = value.tolowerCase();
-const movietitle = item . movie_title.tolowerCase();
-return  searchTerm && movietitle.startWith(SearchTerm)
-    })
-    .map}((item) => (
-        <div  onClick={()=>onSearch(item.movie_title) }    
-        className="dropdown-row"
-        >
-            {item.movie_title}
 
-        </div>
-        ))
+SearchmoviesHandler = (Event) => {
+    const search = Event.target.value.tolocaleowercase();
+    this.setState(()=>{
+        return{searchInput : search }
 
-</div>
-                </div>
-            </div>
-        </div>
+    });
+}; 
+render ( ) 
+{
+    let{ showMovies, searchInput, movies} = this.state; 
+    const filteredMovies = movies.filter ((movie)=> {
+        return movie.Title.tolocaleowercase().includes(searchInput);
+    });
+let renderMovies = "loading movies...";
+if (showMovies) {
+    renderMovies = (
+        <MovieList movie = { filteredMovies} />
     );
 }
+return (
+    <div className="App">
+        <h1>search </h1>
+    <input  
+    type="search"
+    placeholder="search movies "
+    onChange ={ this.SearchmoviesHandler} />
+    
+    {renderMovies}
+    </div>
+);
+
+
+
+
+} 
+
+
+}
+
+
+export default App;
+

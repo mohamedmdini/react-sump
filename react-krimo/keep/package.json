@@ -1,0 +1,22 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "mdini mohamed",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"echo/error no test spesified/\"&& exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamedmdini/react-sump.git"
+  },
+  "keywords": [
+    "[]"
+  ],
+  "author": "\"\"",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohamedmdini/react-sump/issues"
+  },
+  "homepage": "https://github.com/mohamedmdini/react-sump#readme"
+}

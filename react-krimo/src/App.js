@@ -1,19 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-import Title from './components/MovieList';
-import MovieCard from './components/MovieCard';
-import Index from './components/index';
+
+import "./App.css";
+import Filter from './components/more';
+import StarRating from './components/starRAting';
 
 
 
-function App() {
-  return (
+
+
+function Love (){
+  
+  return(
     <div>
-      <Title/>
-      <MovieCard/>
-      <Index/>
-    </div>
-  );
-}
+          
 
-export default App;
+
+
+  
+    <Filter/>
+    <StarRating/>
+    
+    </div>
+
+
+  )
+
+}
+      
+    export default Love ;       
+          
+
